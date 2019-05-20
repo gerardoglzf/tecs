@@ -14,13 +14,13 @@ class CreateProductosTable extends Migration {
 	{
 		Schema::create('productos', function(Blueprint $table)
 		{
-			$table->integer('id_productos', true);
-			$table->string('nombre_producto');
+			$table->integer('id', true);
+			$table->string('nombre');
 			$table->text('descripcion', 65535);
-			$table->integer('tantidad');
+			$table->integer('cantidad');
 			$table->float('precio', 10, 0);
 			$table->boolean('status');
-			$table->integer('idusuario')->index('fk_productos_1_idx');
+			$table->integer('id_usuario')->index('fk_productos_1_idx');
 		});
 	}
 

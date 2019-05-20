@@ -4,6 +4,7 @@
 
 @section('content')
 
+@include('ventanas.errors')
 <!--Informacion del perfil de usuario-->
 <div class="container-fluid" id="inforPerfil">
     <div class="row">
@@ -11,15 +12,15 @@
             <div class=" card text-center" style="width: 20rem; margin-top: 50px;">
                 <img class="card-img-top rounded-circle mx-auto d-block" style="height: 200px; width: 200px; background-color: #EFEFEF;" src="{{ asset('imagenes/avatar.png') }}" alt="">
                 <div class="card-body">
-                    <h5 class="card-title">Gerardo Gonzalez Flores</h5>
-                    <p class="card-text">Correo: gerardo1997gof@gmail.com</p>
-                    <p class="card-text">Facebook: Gerardo Gonzalez</p>
-                    <p class="card-text">Telefono: 481-154-1317</p>
+                    <h5 class="card-title">Nombre</h5>
+                    <p class="card-text">Apellido</p>
+                    <p class="card-text">Correo</p>
+                    <p class="card-text">Num_telefono</p>
                     <button type="submit" class="btn btn-primary">Editar perfil</button>
                 </div>
              </div>
         </div>  
-    
+
 <!--Registro de productos-->    
         <div class="col-10 col-sm-4" id="perfil" style="width: 20rem; margin-top: 40px;">
             <h5>Ahora puedes registrar tus productos</h5>
@@ -48,16 +49,11 @@
 
         <div class="col-10 col-sm-4" id="reg">
                <h5>Selecciona imagenes del producto</h5>
-                        <div class="form-group" id="form"> 
-                            <label for="">Photo</label> <br>
-                            <input id="file" type="file" name="Imagen" required>
-                        </div>  
-                        <div class="row">
-                            <div class="col-xm preview" id="preview">
-                                  
-                            </div>
+                    <form action="/file-upload" class="dropzone" id="my-awesome-dropzone">
+                        <div class="fallback">
+                            <input type="file" name="file" multiple>                         
                         </div>
-                        
+                    </form>    
                         <button type="submit" class="btn btn-primary">Guardar</button>
             </div>
 

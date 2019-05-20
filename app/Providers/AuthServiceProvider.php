@@ -2,6 +2,7 @@
 
 namespace TecStore\Providers;
 
+use Laravel\Passport\Passport;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -13,7 +14,8 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        // 'TecStore\Model' => 'TecStore\Policies\ModelPolicy',
+        //Esta parte venia comentada.
+        'TecStore\Model' => 'TecStore\Policies\ModelPolicy',
     ];
 
     /**
@@ -24,7 +26,7 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-
-        //
+        Passport::routes();
+        
     }
 }

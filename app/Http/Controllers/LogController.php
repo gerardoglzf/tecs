@@ -1,10 +1,16 @@
 <?php
 
 namespace TecStore\Http\Controllers;
-use TecStore\usuarios;
-use Illuminate\Http\Request;
 
-class usuariosController extends Controller
+use Illuminate\Http\Request;
+use Auth;
+use Session;
+use Redirect;
+use TecStore\Http\Requests;
+use TecStore\Http\Requests\LoginRequest;
+use TecStore\Http\Controllers\Controller; 
+
+class LogController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +19,7 @@ class usuariosController extends Controller
      */
     public function index()
     {
-        $usuarios = usuarios::all();
-        return view('registros.usuarios', compact('usuarios'));
+        //
     }
 
     /**
@@ -24,7 +29,7 @@ class usuariosController extends Controller
      */
     public function create()
     {
-       
+        //
     }
 
     /**
@@ -33,24 +38,13 @@ class usuariosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(LoginRequest $request)
     {
-         if($request->hasFile('avatar')){
-            $archivo = $request->file('avatar');
-            $nombre = time().$archivo->getClientOriginalName();
-            $archivo->move(public_path().'/images/',$nombre);
-        }   
-            $usuario = new usuarios();   
-            $usuario->nombre = $request->input('nombre');
-            $usuario->apellido = $request->input('apellido');
-            $usuario->avatar = $nombre;
-            $usuario->correo = $request->input('correo');
-            $usuario->facebook = $request->input('facebook');
-            $usuario->num_cel = $request->input('num_telefono');
-            $usuario->nom_usuario = $request->input('usuario');
-            $usuario->password = bcrypt($request->input('password'));
-            $usuario->save();
-            return redirect('/usuarios')->with('message','store');
+        if(Auth::attempt(['nom_usuario'=>$request['username'], 'password'=>$request['password']])){
+            return Redirect::to('/perfil_Usuario');
+        }
+        Session::flash('message-error','Datos incorrectos');
+        return Redirect::to('/');   
     }
 
     /**
@@ -61,8 +55,7 @@ class usuariosController extends Controller
      */
     public function show($id)
     {
-        $user = usuarios::find($id);
-        return view('/perfil_Usuario',compact('user'));
+        
     }
 
     /**

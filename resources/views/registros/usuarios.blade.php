@@ -4,6 +4,16 @@
 
 @section('content')
 
+
+<?php $message = Session::get('message') ?>
+
+@if ($message == 'store')
+    <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+        ¡Usuarios creado exitosamente!
+    </div>
+@endif
+
 <!--Instruccion-->
 <h4 class="text-center">Registrate es gratis</h4>
 <h6 class="text-center">Una vez realizado tu registrado tendras el privilegio de ofertar tus productos en nuestro sitio.</h6><br>

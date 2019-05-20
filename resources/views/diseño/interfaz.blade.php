@@ -16,21 +16,24 @@
         <a href="#contact">Contacto</a>
         <a href="#about">Acerca de</a>
         <div class="login-container">   
-          <form action="{{ url('/perfil_Usuario') }}" method="GET">
-            <input type="text" placeholder="Username" name="Username">
-            <input type="password" placeholder="Password" name="Password">
-            <button>Iniciar</button>
-          </form>
+         {!! Form::open(['route'=>'log.store', 'method'=>'POST']) !!}
+            <input type="text" placeholder="Username" name="username" required>
+            <input type="password" placeholder="Password" name="password" required>
+            {!! Form::submit('Iniciar',['class'=>'btn btn-primary', 'id'=>'iniciar']) !!}
+          {!! Form::close() !!}
         </div>
 </div>   
+
 <!--Navbar-->
 
     <div class="container">
+      @include('ventanas.errors')
         @yield('content')
     </div>
 
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/pooper.min.js') }}"></script>
     <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/dropzone.js') }}"></script>
 </body>
 </html>

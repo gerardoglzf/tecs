@@ -18,4 +18,4 @@ Route::get('/show_Producto',function(){
 
 Route::resource('usuarios','usuariosController');
 
-//Route::resource('productos','productosController');
+Route::resource('log','LogController');

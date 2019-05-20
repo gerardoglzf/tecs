@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class productos extends Model
 {
     protected $fillable = [
-        'nombre_producto', 'descripcion', 'cantidad', 'precio', 'status', 'idusuario'
+        'nombre', 'descripcion', 'cantidad', 'precio', 'status', 'id_usuario'
     ];
 
-    protected $primaryKey = 'id_productos';
+    protected $primaryKey = 'id';
     public $timestamps = false;
 }
 

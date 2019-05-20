@@ -14,7 +14,7 @@ class CreateUsuariosTable extends Migration {
 	{
 		Schema::create('usuarios', function(Blueprint $table)
 		{
-			$table->integer('id_usuario', true);
+			$table->integer('id', true);
 			$table->string('nombre');
 			$table->string('apellido');
 			$table->text('avatar', 65535);
