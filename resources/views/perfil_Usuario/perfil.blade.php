@@ -4,6 +4,15 @@
 
 @section('content')
 
+<?php $message = Session::get('message') ?>
+
+@if ($message == 'store')
+    <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+        ¡Usuarios creado exitosamente!
+    </div>
+@endif
+
 @include('ventanas.errors')
 <!--Informacion del perfil de usuario-->
 <div class="container-fluid" id="inforPerfil">
@@ -12,7 +21,8 @@
             <div class=" card text-center" style="width: 20rem; margin-top: 50px;">
                 <img class="card-img-top rounded-circle mx-auto d-block" style="height: 200px; width: 200px; background-color: #EFEFEF;" src="{{ asset('imagenes/avatar.png') }}" alt="">
                 <div class="card-body">
-                    <h5 class="card-title">Nombre</h5>
+
+                    <h5 class="card-title">Nombre:</h5>
                     <p class="card-text">Apellido</p>
                     <p class="card-text">Correo</p>
                     <p class="card-text">Num_telefono</p>
@@ -24,6 +34,7 @@
 <!--Registro de productos-->    
         <div class="col-10 col-sm-4" id="perfil" style="width: 20rem; margin-top: 40px;">
             <h5>Ahora puedes registrar tus productos</h5>
+            {!! Form::open(['route'=>'productos.store', 'method'=>'POST', 'files' => true, 'role' => 'form']) !!}
              
                     <div class="form-group">    
                         <input type="text" name="nom_producto" value="" placeholder="Name" class="form-control"  required>
@@ -40,11 +51,9 @@
                     <div class="form-group">
                         <input type="text" name="precio" placeholder="Cantidad" class="form-control" required>
                     </div>
-                    <div class="form-group">
-                        <input type="text" name="status" placeholder="status" class="form-control" required>
-                    </div>
 
                     <button type="submit" class="btn btn-primary">Guardar</button>
+                {!! Form::close() !!}
         </div>
 
         <div class="col-10 col-sm-4" id="reg">
@@ -64,6 +73,8 @@
             <h2>Productos registrados</h2>
             <h6>En este apartado podra visualizar los productos que haya registrado</h6>
     <div class="row">  
+        {{-- productos del usuario --}}
+        
             <div class="col-sm">
                 <div class="card text-center" style="width: 18rem; margin-top: 40px;">
                     <img class="card-img-top rounded-circle mx-auto d-block" style="height: 200px; width: 200px; background-color: #EFEFEF;" src="{{ asset('imagenes/arduino-uno.jpg') }}" alt="">
@@ -76,46 +87,6 @@
                     </div>
                 </div>
             </div>
-    
-        <div class="col-sm">
-            <div class="card text-center" style="width: 18rem; margin-top: 40px;">
-                <img class="card-img-top rounded-circle mx-auto d-block" style="height: 200px; width: 200px; background-color: #EFEFEF;" src="{{ asset('imagenes/3-leds.gif') }}"" alt="">
-                <div class="card-body">
-                    <h5 class="card-title">PIC16F84</h5>
-                    <p class="card-text"><strong>Precio:</strong> $200</p>
-                    <p class="card-text"><strong>Descripción:</strong> Arduino uno de 5° generacion</p>
-                    <button type="submit" class="btn btn-primary">Editar</button>
-                    <button type="submit" class="btn btn-primary">Eliminar</button>
-                </div>
-            </div>
-        </div>
-    
-        <div class="col-sm">
-            <div class="card text-center" style="width: 18rem; margin-top: 40px;">
-                <img class="card-img-top rounded-circle mx-auto d-block" style="height: 200px; width: 200px; background-color: #EFEFEF;" src="{{ asset('imagenes/3-leds.gif') }}" alt="">
-                <div class="card-body">
-                    <h5 class="card-title">Led infrarrojo</h5>
-                    <p class="card-text"><strong>Precio:</strong> $200</p>
-                    <p class="card-text"><strong>Descripción:</strong> Arduino uno de 5° generacion</p>
-                    <button type="submit" class="btn btn-primary">Editar</button>
-                        <button type="submit" class="btn btn-primary">Eliminar</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-sm">
-                <div class="card text-center" style="width: 18rem; margin-top: 40px;">
-                    <img class="card-img-top rounded-circle mx-auto d-block" style="height: 200px; width: 200px; background-color: #EFEFEF;" src="{{ asset('imagenes/descarga.jfif') }}" alt="">
-                    <div class="card-body">
-                        <h5 class="card-title">Resistencias</h5>
-                        <p class="card-text"><strong>Precio:</strong> $200</p>
-                        <p class="card-text"><strong>Descripción    :</strong> Arduino uno de 5° generacion</p>
-                        <button type="submit" class="btn btn-primary">Editar</button>
-                        <button type="submit" class="btn btn-primary">Eliminar</button>
-                    </div>
-                </div>
-            </div>
-
     </div>
 </div>
 

@@ -1,9 +1,11 @@
 <?php
 
 namespace TecStore\Http\Controllers;
-use TecStore\User;
+
 use Illuminate\Http\Request;
-class usuariosController extends Controller
+use TecStore\imagen;
+
+class imagenController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -12,8 +14,7 @@ class usuariosController extends Controller
      */
     public function index()
     {
-        $usuarios = User::all();
-        return view('registros.usuarios', compact('usuarios'));
+
     }
 
     /**
@@ -23,7 +24,7 @@ class usuariosController extends Controller
      */
     public function create()
     {
-       
+        //
     }
 
     /**
@@ -34,22 +35,9 @@ class usuariosController extends Controller
      */
     public function store(Request $request)
     {
-         if($request->hasFile('avatar')){
-            $archivo = $request->file('avatar');
-            $nombre = time().$archivo->getClientOriginalName();
-            $archivo->move(public_path().'/images/',$nombre);
-        }   
-            $usuario = new User();   
-            $usuario->nombre = $request->input('nombre');
-            $usuario->apellido = $request->input('apellido');
-            $usuario->avatar = $nombre;
-            $usuario->correo = $request->input('correo');
-            $usuario->facebook = $request->input('facebook');
-            $usuario->num_cel = $request->input('num_telefono');
-            $usuario->nom_usuario = $request->input('usuario');
-            $usuario->password = bcrypt($request->input('password'));
-            $usuario->save();
-            return redirect('/usuarios')->with('message','store');
+        $imagen = imagen::all();
+        $imagen->id_producto=$request->input('');
+
     }
 
     /**
@@ -60,7 +48,7 @@ class usuariosController extends Controller
      */
     public function show($id)
     {
-
+        //
     }
 
     /**

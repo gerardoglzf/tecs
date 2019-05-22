@@ -1,6 +1,9 @@
 <?php
 
 namespace TecStore\Http\Controllers;
+use Auth;
+use Session;
+
 use TecStore\productos;
 use Illuminate\Http\Request;
 
@@ -13,8 +16,8 @@ class productosController extends Controller
      */
     public function index()
     {
-        $productos = productos::all();
-        return view('perfil_Usuario.perfil', compact('productos'));
+        $data = productos::all();
+        return view('index',compact('data'));
     }
 
     /**
@@ -35,10 +38,15 @@ class productosController extends Controller
      */
     public function store(Request $request)
     {
-        $productos = new productos();
-        $productos->$nombre_producto = $request->input('nom_producto');
-        $productos->$descripcion = $request->input('descripcion');
-        $productos->$cantidad = $request->input('cantidad');
+        $producto = new productos();
+        $producto->nombre = $request->input('nom_producto');
+        $producto->descripcion = $request->input('descripcion');
+        $producto->cantidad = $request->input('cantidad');
+        $producto->precio = $request->input('precio');
+        $producto->status = 1;
+        $producto->id_usuario = Auth::id();
+        $producto->save();
+        return redirect('perfil_Usuario')->with('message','store');
     }
 
     /**

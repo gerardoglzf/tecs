@@ -68,7 +68,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => TecStore\usuarios::class,
+            'model' => TecStore\User::class,
         ],
 
         // 'users' => [

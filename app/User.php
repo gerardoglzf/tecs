@@ -5,6 +5,7 @@ namespace TecStore;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\AuthenticableTrait;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -16,8 +17,9 @@ class User extends Authenticatable
      *
      * @var array
      */
+   
     protected $fillable = [
-        'name', 'email', 'password',
+        'nombre', 'apellido', 'avatar', 'correo', 'facebook', 'num_cel','nom_usuario','password'
     ];
 
     /**
@@ -37,4 +39,6 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    protected $primaryKey = 'id';
+    public $timestamps = false;
 }

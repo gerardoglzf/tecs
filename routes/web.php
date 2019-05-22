@@ -11,7 +11,6 @@ Route::get('/registros',function(){
 Route::get('/perfil_Usuario',function(){
     return view('perfil_Usuario.perfil');
 });
-
 Route::get('/show_Producto',function(){
    return view('show_Producto.show'); 
 });
@@ -19,3 +18,9 @@ Route::get('/show_Producto',function(){
 Route::resource('usuarios','usuariosController');
 
 Route::resource('log','LogController');
+
+Route::get('/', 'productosController@index');
+
+Route::resource('productos','productosController');
+
+Route::resource('imagen','imagenController');

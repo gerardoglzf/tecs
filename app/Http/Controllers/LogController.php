@@ -6,12 +6,14 @@ use Illuminate\Http\Request;
 use Auth;
 use Session;
 use Redirect;
+use TecStore\User;
 use TecStore\Http\Requests;
 use TecStore\Http\Requests\LoginRequest;
-use TecStore\Http\Controllers\Controller; 
+use TecStore\Http\Controllers\Controller;
 
 class LogController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      *
@@ -19,7 +21,7 @@ class LogController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -44,7 +46,8 @@ class LogController extends Controller
             return Redirect::to('/perfil_Usuario');
         }
         Session::flash('message-error','Datos incorrectos');
-        return Redirect::to('/');   
+        return Redirect::to('/');  
+         
     }
 
     /**
@@ -55,7 +58,7 @@ class LogController extends Controller
      */
     public function show($id)
     {
-        
+
     }
 
     /**
